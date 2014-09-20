@@ -1,0 +1,479 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<!-- DEFAULT VARIABLES -->
+<meta name="if:Show Search" content="1" />
+<meta name="if:Show Archive Link" content="1" />
+<meta name="if:Show Tags" content="1" />
+<meta name="if:Show Album Art on Audio Posts" content="1" />
+<meta name="text:Google Analytics ID" content=""/>
+<meta name="text:Disqus Shortname" content=""/>
+
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+<link rel="shortcut icon" href="{Favicon}">
+
+<title>
+{block:SearchPage}Search results for "{SearchQuery}" - {/block:SearchPage}
+{block:PostSummary}{PostSummary} - {/block:PostSummary}
+{Title}
+</title>
+
+{block:Description}
+<meta name="description" content="{MetaDescription}" />
+{/block:Description}
+
+<script type="text/javascript" src="/tweets.js"></script>
+
+<style type="text/css">
+
+html {
+  min-height: 100%;
+}
+
+body {
+  background: #16182D;
+  color: #D6DEE7;
+  min-height: 100%;
+  font-family: Helvetica, Arial;
+}
+
+.title h1 {
+  padding-bottom: 5px;
+  margin-bottom: 0px;
+}
+
+.description {
+  margin-bottom: 20px;
+}
+
+.title h1 a {
+    font-size: 46px;
+    color: #BF00C7;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #ECED33;
+}
+.title h1 a:hover {
+    text-decoration: none;
+}
+
+a:link {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+a:visited {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+a:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+a:active {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.link a:link { color: #D247D6; }
+.link a:visited { color: #D247D6; }
+.link a:hover { color: #ED00FE; }
+.link a:active { color: #ED00FE; }
+
+.permalink a { font-size: 12px; }
+.permalink a:link { color: #FFFFFF; }
+.permalink a:visited { color: #FFFFFF; }
+.permalink a:hover { color: #FFFFFF; }
+.permalink a:active { color: #FFFFFF; }
+
+#twitter {
+  margin-bottom: 15px;
+}
+
+#twitter span {
+  margin-left: 2px;
+}
+
+.twitter-icon {
+  position: relative;
+  top: 1px;
+  width: 18px;
+  height: 15px;
+}
+
+.archive {
+  margin-top: 10px;
+  padding-left: 2px;
+}
+
+.left-column > .post {
+  border-top: 1px solid #13214B;
+  padding: 20px 0px 20px 0px;
+}
+
+.left-column > div:nth-last-of-type(3) {
+  border-bottom: 1px solid #13214B;
+  margin-bottom: 20px;
+}
+
+.wrap2 {
+  width: 1000px;
+  margin: 0 auto;
+  min-height: 100%;
+}
+
+.wrap1 {
+  float:left;
+  width:100%;
+  background-color: #121415;
+  border-right: 1px solid #13214B;
+  min-height: 100%;
+  position: relative;
+  right: 33%;
+}
+
+.left-wrap {
+  float:left;
+  min-height: 100%;
+  width:67%;
+  position:relative;
+  left: 33%;
+}
+
+.right-wrap{
+  float:left;
+  width:33%;
+  position:relative;
+  left: 33%;
+}
+
+/* Left Column */
+
+.left-column {
+  width: 630px;
+  float: right;
+  min-height: 100%;
+}
+
+/* Right Column */
+
+.right-column {
+  width: 310px;
+  margin-top: 140px;
+  padding-left: 20px;
+}
+
+.right-column p {
+  margin-left: 10px;
+}
+
+.right-column .description {
+  margin-bottom: 30px;
+}
+
+.right-column h2 {
+  font-size: 20px;
+  clear: both;
+  float: left;
+  margin-bottom: 10px;
+}
+
+#footer {
+  padding-bottom: 15px;
+}
+
+{CustomCSS}
+</style>
+
+</head>
+
+
+<body>
+<div class="wrap2">
+  <div class="wrap1">
+    <div class="left-wrap">
+      <div class="left-column">
+
+        <div class="accent"></div>
+
+        <div class="title">
+          <h1><a href="/">{Title}</a></h1>
+        </div>
+        <div class="description">
+          {block:Description}
+          {Description}
+          {/block:Description}
+        </div>
+
+        {block:SearchPage}
+        {block:SearchResults}
+        <div id="searchresults">
+          {lang:SearchResultCount results for SearchQuery 2}
+        </div>
+        {/block:SearchResults}
+
+        {block:NoSearchResults}
+        <div id="searchresults">
+          {lang:No search results for SearchQuery 2}
+        </div>
+        {/block:NoSearchResults}
+        {/block:SearchPage}
+
+        {block:TagPage}
+        <div id="tagresults">
+          Posts tagged "{Tag}"
+        </div>
+        {/block:TagPage}
+
+        {block:DayPage}
+        <div id="tagresults">
+          {Month} {DayOfMonth}, {Year}
+        </div>
+        {/block:DayPage}
+
+
+        {block:Posts}
+        <div class="post">
+          {block:Text}
+          <div class="regular">
+            {block:Title}<h2>{Title}</h2>{/block:Title}
+            {Body}
+          </div>
+          {/block:Text}
+
+          {block:Photo}
+          <div class="photo">
+            {LinkOpenTag}<img alt="{PhotoAlt}" src="{PhotoURL-500}"/>{LinkCloseTag}
+            {block:Caption}{Caption}{/block:Caption}
+          </div>
+          {/block:Photo}
+
+          {block:Quote}
+          <div class="quote">
+            <big class="quote">&#147;</big>
+            <blockquote>{Quote}</blockquote>
+            {block:Source}<cite>{Source}</cite>{/block:Source}
+          </div>
+          {/block:Quote}
+
+          {block:Link}
+          <div class="link">
+            <a class="go" href="{URL}">{Name}</a>
+            {block:Description}{Description}{/block:Description}
+          </div>
+          {/block:Link}
+
+          {block:Chat}
+          <div class="chat">
+            {block:Title}<h3>{Title}</h3>{/block:Title}
+            <ul class="conv">
+              {block:Lines}<li class="{Alt}">{block:Label}<strong>{Label}</strong> {/block:Label}{Line}</li>{/block:Lines}
+            </ul>
+          </div>
+          {/block:Chat}
+
+          {block:Audio}
+          <div class="audio">
+            {block:IfShowAlbumArtOnAudioPosts}
+            {block:AlbumArt}
+            <div class="album_art">
+              <img src="{AlbumArtURL}" alt="{block:Artist}{Artist}{/block:Artist}{block:TrackName} - {TrackName}{/block:TrackName}" style="margin-bottom:10px;" />
+            </div>
+            {/block:AlbumArt}
+            {/block:IfShowAlbumArtOnAudioPosts}
+            {AudioPlayerGrey}
+            {block:Caption}{Caption}{/block:Caption}
+            {PlayCountWithLabel}
+          </div>
+          {/block:Audio}
+
+          {block:Video}
+          <div class="video">
+            {Video-500}
+            {block:Caption}{Caption}{/block:Caption}
+          </div>
+          {/block:Video}
+
+          {block:Date}
+          <div class="permalink"><a href="{Permalink}">{TimeAgo}</a></div>
+          {/block:Date}
+
+          {block:PostNotes}
+          <div class="notecontainer">{PostNotes}</div>
+          <div class="clearfix"></div>
+          {/block:PostNotes}
+
+          <div class="footer">
+            {block:NoteCount}
+            <p>
+            <a href="{Permalink}">{NoteCountWithLabel}</a>
+            </p>
+            {/block:NoteCount}
+            {block:IfShowTags}
+            {block:HasTags}<div class="tags">{block:Tags}<a href="{TagURL}">{Tag}</a><span class="tag-commas">&nbsp; </span>{/block:Tags}</div>{/block:HasTags}
+            {/block:IfShowTags}
+
+
+
+            {block:ContentSource}
+            <a href="{SourceURL}" class="source_url">
+              {lang:Source}:
+              {block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />{/block:SourceLogo}
+              {block:NoSourceLogo}{SourceTitle}{/block:NoSourceLogo}
+            </a>
+            {/block:ContentSource}
+
+          </div>
+        </div>
+
+        {block:Permalink}
+
+        {block:IfDisqusShortname}
+        <div id="disqus_thread"></div>
+        <script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+        <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+        {/block:IfDisqusShortname}
+
+        {/block:Permalink}
+
+
+        {/block:Posts}
+
+
+        {block:IfDisqusShortname}
+        <script type="text/javascript">
+//<![CDATA[
+        (function() {
+         var links = document.getElementsByTagName('a');
+         var query = '?';
+         for(var i = 0; i < links.length; i++) {
+         if(links[i].href.indexOf('#disqus_thread') >= 0) {
+         query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+         }
+         }
+         document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/get_num_replies.js' + query + '"></' + 'script>');
+         })();
+//]]>
+        </script>
+        {/block:IfDisqusShortname}
+
+
+        <div style="clear: left"></div>
+
+        {block:Pagination}
+        <div id="footer">
+          {block:PreviousPage} <a href="{PreviousPage}" class="previous">&larr;Previous</a>  {/block:PreviousPage}
+          {block:NextPage} <a href="{NextPage}" class="next">Next&rarr;</a> {/block:NextPage}
+        </div>
+        {/block:Pagination}
+
+        {block:PermalinkPagination}
+        <div id="footer">
+          {block:PreviousPost}
+          <a href="{PreviousPost}" class="previous">&larr;Previous</a>
+          {/block:PreviousPost}
+
+          {block:NextPost}
+          <a href="{NextPost}" class="next">Next&rarr;</a>
+          {/block:NextPost}
+        </div>
+        {/block:PermalinkPagination}
+
+        {block:DayPagination}
+        <div id="footer">
+          {block:PreviousDayPage}
+          <a href="{PreviousDayPage}">
+            &#171; {ShortMonth} {DayOfMonth}
+          </a>
+          {/block:PreviousDayPage}
+
+          {block:NextDayPage}
+          <a href="{NextDayPage}">
+            {ShortMonth} {DayOfMonth} &#187;
+          </a>
+          {/block:NextDayPage}
+        </div>
+        {/block:DayPagination}
+
+      </div>
+    </div>
+
+    <div class="right-wrap">
+      <div class="right-column">
+
+        {block:Twitter}
+        <div id="twitter" class="link">
+          <a href="http://twitter.com/{TwitterUsername}">
+          <img class="twitter-icon" src="https://g.twimg.com/Twitter_logo_blue.png" />
+          @{TwitterUsername}
+          </a>
+        </div>
+        {/block:Twitter}
+
+        {block:ifShowSearch}
+        <div class="search">
+          <form action="/search" method="get">
+            <input type="text" name="q" value="" placeholder="Search">
+            <button type="submit" style="display: none"></button>
+          </form>
+        </div>
+        {/block:ifShowSearch}
+
+        {block:ifShowArchiveLink}
+        <div class="archive">
+          <a href="/archive">view archive</a>
+        </div>
+        {/block:ifShowArchiveLink}
+
+        <br>
+        <br>
+        {block:HasPages}
+
+        {block:Pages}
+        <h2>
+          <a href="{URL}">{Label}</a>
+        </h2>
+        {/block:Pages}
+
+        {/block:HasPages}
+
+        {block:AskEnabled}
+        <h2>
+          <a href="/ask">{AskLabel}</a>
+        </h2>
+        {/block:AskEnabled}
+
+        {block:SubmissionsEnabled}
+        <h2>
+          <a href="/submit">{SubmitLabel}</a>
+        </h2>
+        {/block:SubmissionsEnabled}
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{block:Twitter}
+<script type="text/javascript" src="/tweets.js"></script>
+{/block:Twitter}
+
+{block:IfGoogleAnalyticsID}
+<script type="text/javascript">
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', '{text:Google Analytics ID}']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+
+</script>
+{/block:IfGoogleAnalyticsID}
+
+</body>
+</html>
